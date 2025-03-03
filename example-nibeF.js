@@ -1,5 +1,5 @@
 var nibe = require('./index');
-const port = "/dev/ttyUSB0";
+const port = "COM1";
 const mqtt_host = "127.0.0.1";
 const mqtt_port = "1883"
 const mqtt_user = "";

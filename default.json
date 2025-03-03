@@ -6,14 +6,14 @@
         "series": "fSeries"
     },
     "serial": {
-        "port": "/dev/ttyAMA0"
+        "port": "COM1"
     },
     "home": {
         "adjust_s1": 0,
         "adjust_s2": 0
     },
     "mqtt": {
-        "enable": false,
+        "enable": true,
         "host": "127.0.0.1",
         "port": "1883",
         "user": "",
@@ -30,8 +30,8 @@
         "enable_hw_priority": false
     },
     "log": {
-        "enable": false,
-        "info": false,
+        "enable": true,
+        "info": true,
         "core": false,
         "debug": false,
         "error": true

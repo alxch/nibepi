@@ -93,9 +93,11 @@ process.on('disconnect', (m) => {
 
 
 function showPortOpen() {
-  //console.log(`Core started on serial port ${portName}`);
+  process.send({ type: "log", data: `Core started on serial port ${portName}`, level: "info", kind: "Serialport" });
+  console.log(`Core started on serial port ${portName}`);
 }
 function showPortClose() {
+  process.send({ type: "log", data: 'Port closed. Data rate: ' + myPort.baudRate, level: "info", kind: "Serialport" });
   console.log('Port closed. Data rate: ' + myPort.baudRate);
 }
 function showError(error) {
