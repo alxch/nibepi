@@ -31,7 +31,7 @@
     },
     "log": {
         "enable": true,
-        "info": true,
+        "info": false,
         "core": false,
         "debug": false,
         "error": true
