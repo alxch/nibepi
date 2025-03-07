@@ -1130,8 +1130,8 @@ const decodeMessage = (buf) => {
         nibeEmit.emit(address, register[index]);
         addMQTTdiscovery(register[index]);
         publishMQTT(config.mqtt.topic + address + "/json", JSON.stringify(register[index]))
-        publishMQTT(config.mqtt.topic + address + "/raw", register[index].raw_data)
-        publishMQTT(config.mqtt.topic + address, register[index].data)
+        // publishMQTT(config.mqtt.topic + address + "/raw", register[index].raw_data)
+        // publishMQTT(config.mqtt.topic + address, register[index].data)
         log(config.log.enable, JSON.stringify(register[index]), config.log['debug'], "Data");
         log(config.log.enable, register[index].register + ", " + register[index].titel + ": " + register[index].data + " " + register[index].unit, config.log['info'], "Data");
       }
@@ -1317,6 +1317,22 @@ const handleMQTT = (on, host, port, user, pass, cb) => {
             if (subscribed === false && topic.includes(subTopic)) {
               topic = topic.replace(config.mqtt.topic, '')
               topic = topic.split('/');
+              if(topic[0] === 'request'){
+                try{
+                  // const request = JSON.parse(message.toString());
+                  switch(topic[1]){
+                    case 'info':
+                      publishMQTT(config.mqtt.topic + "response/info", JSON.stringify({
+                        model, firmware
+                      }));
+                    break;
+                  }
+                }
+                catch(error){
+                  console.error('MQTT error:', topic, message);
+                }
+                return;
+              }
               if (topic.includes('set')) {
                 setData(topic[0], message, (err, result) => {
                   if (err) return console.log(err);
