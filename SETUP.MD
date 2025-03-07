@@ -30,3 +30,12 @@ RestartSec=10s
 [Install]
 WantedBy=multi-user.target
 ```
+
+# node
+```js
+const mqtt = require("mqtt");
+client = mqtt.connect("mqtt://localhost");
+client.on("message", (topic, message) => console.log(`\x1b[32m${topic}\x1b[0m:`, message.toString()));
+client.subscribe("nibe/modbus/+/json");
+client.removeAllListeners('message');
+```
