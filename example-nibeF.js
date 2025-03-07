@@ -22,5 +22,5 @@ nibe.handleMQTT(true, mqtt_host, mqtt_port, mqtt_user, mqtt_pass, function (err,
 console.log('Waiting for MQTT')
 
 nibe.data.on('data', data => {
-    console.log(`${data.register}, ${data.titel}: ${data.data} ${data.unit}`)
+    // console.log(`${data.register}, ${data.titel}: ${data.data} ${data.unit}`)
 })
