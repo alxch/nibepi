@@ -35,9 +35,9 @@ WantedBy=multi-user.target
 ```js
 const mqtt = require("mqtt");
 client = mqtt.connect("mqtt://localhost");
-client.on("message", (topic, message) => console.log(`\x1b[32m${topic}\x1b[0m:`, message.toString()));
+client.on("message", (topic, message) => console.log(`\x1b[32m"${topic}"\x1b[0m:`, message.toString() + ","));
 client.removeAllListeners('message');
-client.unsubscribe("nibe/modbus/+/json");
+client.subscribe("nibe/modbus/+/json");
 client.subscribe("nibe/modbus/response/#");
 client.publish("nibe/modbus/request/info");
 
