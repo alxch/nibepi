@@ -40,4 +40,21 @@ client.removeAllListeners('message');
 client.unsubscribe("nibe/modbus/+/json");
 client.subscribe("nibe/modbus/response/#");
 client.publish("nibe/modbus/request/info");
+
+client.unsubscribe("nibe/modbus/40013/json");
+client.publish("nibe/modbus/40013/get");
+```
+
+# mqtt
+```sh
+mosquitto_sub -h localhost -t nibe/modbus/# -v
+mosquitto_pub -h localhost -t nibe/modbus/47260/json -m '{}'
+```
+```json
+nibe/modbus/response/info: {
+  "model":"F750","firmware":6468
+}
+nibe/modbus/45001/json: {
+  "register":"45001","factor":1,"size":"s16","mode":"R","titel":"Alarm","info":"Indicates the alarm number of the most severe current alarm","unit":"","min":"0","max":"0","map":[{"0":"Inga larm"},{"64":"Låg frånluftstemperatur"},{"83":"Misslyckad avfrostning"},{"164":"Låg frånluftstemperatur"},{"180":"Frysskydd"},{"181":"Misslyckad periodisk höjning"},{"182":"Effektvakt aktiverad"},{"183":"Avfrostning"},{"184":"Filterlarm"},{"251":"Kom.avb Modbus"}],"data":"Misslyckad periodisk höjning","raw_data":181,"timestamp":1741627651379,"logset":false
+}
 ```
