@@ -4,6 +4,7 @@ const log = (enable,data,enabled,kind) => {
     if(enable!==undefined && enable===true && enabled!==undefined && enabled===true) {
         var tzoffset = (new Date()).getTimezoneOffset() * 60000;
         var time = (new Date(Date.now() - tzoffset)).toISOString().slice(0, -1).replace('T',' ');
+        // console.log(`${time} ${kind}: [${data}]`);
         writer.write(`${time} ${kind}: [${data}]\n`);
 }
 }
